@@ -64,6 +64,56 @@ export const tripsTable = {
   },
 };
 
+export const tripPreferencesTable = {
+  async getByTripId(tripId: string) {
+    const { data, error } = await supabase
+      .from("trip_preferences")
+      .select("*")
+      .eq("trip_id", tripId)
+      .single();
+
+    if (error) throw error;
+    return data;
+  },
+
+  async create(
+    preferences: Database["public"]["Tables"]["trip_preferences"]["Insert"],
+  ) {
+    const { data, error } = await supabase
+      .from("trip_preferences")
+      .insert(preferences)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
+  },
+
+  async update(
+    tripId: string,
+    preferences: Database["public"]["Tables"]["trip_preferences"]["Update"],
+  ) {
+    const { data, error } = await supabase
+      .from("trip_preferences")
+      .update(preferences)
+      .eq("trip_id", tripId)
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
+  },
+
+  async delete(tripId: string) {
+    const { error } = await supabase
+      .from("trip_preferences")
+      .delete()
+      .eq("trip_id", tripId);
+
+    if (error) throw error;
+  },
+};
+
 export const tripParticipantsTable = {
   async getByTripId(tripId: string) {
     const { data, error } = await supabase

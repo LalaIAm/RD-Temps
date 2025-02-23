@@ -12,6 +12,38 @@ export type ParticipantRole = "owner" | "admin" | "member";
 export interface Database {
   public: {
     Tables: {
+      trip_preferences: {
+        Row: {
+          id: string;
+          created_at: string;
+          updated_at: string;
+          trip_id: string;
+          stop_preferences: string[];
+          distance_between_stops: number;
+          accommodation: string;
+          dining: string;
+        };
+        Insert: {
+          id?: string;
+          created_at?: string;
+          updated_at?: string;
+          trip_id: string;
+          stop_preferences?: string[];
+          distance_between_stops?: number;
+          accommodation?: string;
+          dining?: string;
+        };
+        Update: {
+          id?: string;
+          created_at?: string;
+          updated_at?: string;
+          trip_id?: string;
+          stop_preferences?: string[];
+          distance_between_stops?: number;
+          accommodation?: string;
+          dining?: string;
+        };
+      };
       trips: {
         Row: {
           id: string;
